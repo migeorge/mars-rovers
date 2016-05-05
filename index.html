@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Mars Rover Image Viewer</title>
+
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/vendor/tether.min.css" type="text/css">
+    <link rel="stylesheet" href="css/loading.css"></link>
+    <link rel="stylesheet" href="css/mars-rover.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 site-title">
+          <h1>Mars Rover Image Viewer</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Search for Images</span>
+            </div>
+            <div class="card-block search loading">
+              <img class="loader-icon spinning-cog" src="img/cog08.svg" />
+            </div>
+            <div class="card-block search loaded hidden">
+              <div class="form-group">
+                <select id="rover-select" data-state-key="rover" class="form-control">
+                  <option>Select a Rover</option>
+                  <option class="rover-option template hidden" value="{{name}}">
+                  {{name}}
+                  </option>
+                </select>
+                <div class="rover-meta select-dependent hidden">
+                  <strong>Landed:</strong> <span id="rover-landed"></span><br />
+                  <strong>Max Date:</strong> <span id="rover-max-date"></span>
+                </div>
+              </div>
+              <div class="form-group select-dependent hidden">
+                <input type="text" id="image-date" data-state-key="date" class="form-control" placeholder="Sol / yyyy-mm-dd" />
+              </div>
+              <div class="form-group select-dependent hidden">
+                <span class="group-label"><strong>Filter Cameras:</strong></span>
+                <div id="camera-options">
+                  <div class="checkbox template hidden">
+                    <label>
+                      <input type="checkbox" data-state-key="camera" id="{{camera-slug}}">
+                      {{camera-full-name}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button id="search-reset" class="btn btn-danger select-dependent hidden">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-8 col-lg-9">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Results</span>
+            </div>
+            <div class="card-block results loading hidden">
+              <img class="loader-icon spinning-cog" src="img/cog08.svg" />
+            </div>
+            <div class="card-block results loaded">
+              <div class="row">
+                <div class="col-md-12 initial-state">
+                  <span>Use the search form to find images from the Mars rovers</span>
+                </div>
+                <div class="col-md-12 no-results hidden">
+                  <span>There are no results for your selected parameters</span>
+                </div>
+                <div class="col-xs-12 col-md-4 photo template hidden">
+                  <div class="card">
+                    <div class="card-block">
+                      {{photo-tag}}
+                    </div>
+                    <div class="card-footer">
+                      {{photo-metadata}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <nav>
+                <ul class="pager hidden">
+                  <li class="pager-prev"><a href="#">&laquo; Previous Page</a></li>
+                  <li class="pager-next"><a href="#">Next Page &raquo;</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          Created by <a href="http://migeorge.me">Mike George</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="photo-modal" class="mg-modal hidden">
+      <div class="mg-modal-content">
+        <span class="mg-modal-close">x</span>
+        <img src="" />
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/vendor/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/vendor/tether.min.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/template_engine.js"></script>
+    <script type="text/javascript" src="js/search_form.js"></script>
+    <script type="text/javascript" src="js/result_set.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
